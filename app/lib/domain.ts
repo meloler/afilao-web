@@ -5,6 +5,7 @@ export const DURATION = 90;
 export const OPEN_DAYS = [0, 3, 4, 5, 6];
 export function isOpenDate(date: string) { return OPEN_DAYS.includes(new Date(`${date}T12:00:00Z`).getUTCDay()); }
 export const TABLES = Array.from({ length: 9 }, (_, i) => ({ id: i + 1, capacity: 2, flexibleCapacity: 3 }));
+export const BASE_CHAIRS = TABLES.reduce((total, table) => total + table.capacity, 0);
 export const TABLE_SEATS_WITH_EXTRA_CHAIR = 3;
 export function tablesNeeded(people: number) { return Math.ceil(people / TABLE_SEATS_WITH_EXTRA_CHAIR); }
 // Hours, base seating layout and joined-table combinations remain provisional.

@@ -21,6 +21,7 @@ Web pensada primero para móvil, con acceso desde Instagram y Google. La acción
 - El cierre del recorrido solo confirma el resultado al cliente y permite volver a la web. No muestra el plano de gestión ni promete un correo. El acceso `/gestion` no se enlaza desde la web pública.
 - Reservas guardadas en una base de datos D1, no en el navegador. Resistencia a solicitudes repetidas y a reservas simultáneas.
 - Panel `/gestion`, con fecha, servicio, hora, plano interactivo, asignación de mesa, reserva manual, edición completa de reservas activas y eliminación con confirmación. Cancelar mantiene la reserva en el historial; eliminar la borra.
+- Resumen del panel: cuenta las reservas del servicio, las mesas libres y las sillas disponibles (18 iniciales), descontando los comensales de las reservas activas que se solapan con la hora seleccionada.
 - Capacidad provisional: 2 plazas base por mesa y una silla extra flexible; reservas de 3 se asignan a una sola mesa. Con 4 a 6 personas se asignan 2 mesas contiguas del esquema.
 - Actualización automática cada 10 segundos mientras la página está visible. Es consulta periódica, no una conexión instantánea por eventos. Máximo retraso habitual: 10 segundos, más el tiempo de red.
 - Datos de demo aislados por la identidad de cada usuario. Acceso del panel comprobado en el servidor. Sitio privado; no está preparado aún para recibir clientes anónimos.
