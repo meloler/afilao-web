@@ -1,0 +1,5 @@
+import { failure, response, scope, usedTables, validateSelection } from '../../lib/database';
+import { combinations, futureSlot, TIMES, isOpenDate, serviceAvailable } from '../../lib/domain';
+export const dynamic = 'force-dynamic';
+export async function GET(request: Request) { try { const q = new URL(request.url).searchParams; const { date, people, service } = validateSelection(q.get('date'), Number(q.get('people')), q.get('service')); if (!isOpenDate(date)) return response({ slots: [], message: 'Los lunes y martes descansamos. Ven de miércoles a domingo.', demo: true }); if (!serviceAvailable(date, service)) return response({ slots: [], message: 'Los domingos cerramos a las 18:00. Ven a comer o elige otro día.', demo: true }); const s = await scope(false); const slots = await Promise.all(TIMES[service].map(async time => ({ time, available: futureSlot(date, time) && !!combinations(people, await usedTables(s, date, time)) }))); return response({ slots, demo: true }); } catch (e) { return failure(e); } }
+
