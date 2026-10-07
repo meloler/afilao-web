@@ -18,11 +18,12 @@ Web pensada primero para móvil, con acceso desde Instagram y Google. La acción
 
 - Web adaptada a móvil y ordenador; botón fijo de reserva y acceso a la carta en móvil.
 - Recorrido de reserva: fecha, personas y hora; nombre y datos opcionales; resultado con referencia.
+- El cierre del recorrido solo confirma el resultado al cliente y permite volver a la web. No muestra el plano de gestión ni promete un correo. El acceso `/gestion` no se enlaza desde la web pública.
 - Reservas guardadas en una base de datos D1, no en el navegador. Resistencia a solicitudes repetidas y a reservas simultáneas.
 - Panel `/gestion`, con fecha, servicio, hora, plano interactivo, asignación de mesa, reserva manual y estados reservada/en mesa/terminada/cancelada.
 - Actualización automática cada 10 segundos mientras la página está visible. Es consulta periódica, no una conexión instantánea por eventos. Máximo retraso habitual: 10 segundos, más el tiempo de red.
 - Datos de demo aislados por la identidad de cada usuario. Acceso del panel comprobado en el servidor. Sitio privado; no está preparado aún para recibir clientes anónimos.
-- Base de aviso por correo con Resend, desactivada en demo. Sin cuenta, clave, remitente o destinatario configurados; no se ha enviado ni verificado ningún correo real.
+- Base de aviso por correo con Resend, desactivada en demo. Sin cuenta, clave, remitente o destinatario configurados; no se ha enviado ni verificado ningún correo real. La pantalla final del cliente lo aclara.
 
 ## Qué sigue provisional
 
