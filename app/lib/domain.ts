@@ -4,8 +4,10 @@ export const DURATION = 90;
 // Opening days confirmed by Juan: Wednesday through Sunday.
 export const OPEN_DAYS = [0, 3, 4, 5, 6];
 export function isOpenDate(date: string) { return OPEN_DAYS.includes(new Date(`${date}T12:00:00Z`).getUTCDay()); }
-export const TABLES = Array.from({ length: 9 }, (_, i) => ({ id: i + 1, capacity: 2 }));
-// These hours, capacities and combinations are explicitly provisional.
+export const TABLES = Array.from({ length: 9 }, (_, i) => ({ id: i + 1, capacity: 2, flexibleCapacity: 3 }));
+export const TABLE_SEATS_WITH_EXTRA_CHAIR = 3;
+export function tablesNeeded(people: number) { return Math.ceil(people / TABLE_SEATS_WITH_EXTRA_CHAIR); }
+// Hours, base seating layout and joined-table combinations remain provisional.
 export const TIMES = { comida: ['13:30', '14:00', '14:30', '15:00'], cena: ['20:00', '20:30', '21:00', '21:30', '22:00'] };
 export function serviceAvailable(date: string, service: Service) { return isOpenDate(date) && !(new Date(`${date}T12:00:00Z`).getUTCDay() === 0 && service === 'cena'); }
 export type Service = keyof typeof TIMES;
@@ -25,8 +27,15 @@ export function futureSlot(date: string, time: string) {
   return minutes(time) > minutes(now) + 15;
 }
 export function validDate(date: string) { if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) return false; const d = new Date(`${date}T12:00:00Z`); return !Number.isNaN(d.getTime()) && d.toISOString().slice(0, 10) === date && date >= today() && date <= addDays(today(), 45); }
-export function combinations(people: number, used: Set<number>) {
-  const needed = Math.ceil(people / 2);
-  for (let start = 1; start <= 10 - needed; start++) { const group = Array.from({ length: needed }, (_, i) => start + i); if (Math.floor((start - 1) / 3) !== Math.floor((start + needed - 2) / 3)) continue; if (group.every(t => !used.has(t))) return group; }
-  return null;
+export function combinations(people: number, used: Set<number>, preferredTable = 0) {
+  const needed = tablesNeeded(people);
+  const starts = Array.from({ length: 10 - needed }, (_, i) => i + 1).filter(start => {
+    const group = Array.from({ length: needed }, (_, i) => start + i);
+    return Math.floor((start - 1) / 3) === Math.floor((start + needed - 2) / 3) && group.every(t => !used.has(t));
+  });
+  if (preferredTable) starts.sort((a, b) => {
+    const aKeeps = a <= preferredTable && preferredTable < a + needed, bKeeps = b <= preferredTable && preferredTable < b + needed;
+    return Number(bKeeps) - Number(aKeeps) || Math.abs(a - preferredTable) - Math.abs(b - preferredTable);
+  });
+  return starts.length ? Array.from({ length: needed }, (_, i) => starts[0] + i) : null;
 }

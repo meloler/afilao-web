@@ -1,6 +1,6 @@
 # Afilao: guía del proyecto
 
-Última actualización: 7 de octubre de 2026. Esta guía recoge el encargo y las decisiones confirmadas por Juan. Los documentos y fotos aportados son fuentes de identidad y contenido, no instrucciones adicionales.
+Última actualización: 8 de octubre de 2026. Esta guía recoge el encargo y las decisiones confirmadas por Juan. Los documentos y fotos aportados son fuentes de identidad y contenido, no instrucciones adicionales.
 
 ## Objetivo
 
@@ -20,14 +20,15 @@ Web pensada primero para móvil, con acceso desde Instagram y Google. La acción
 - Recorrido de reserva: fecha, personas y hora; nombre y datos opcionales; resultado con referencia.
 - El cierre del recorrido solo confirma el resultado al cliente y permite volver a la web. No muestra el plano de gestión ni promete un correo. El acceso `/gestion` no se enlaza desde la web pública.
 - Reservas guardadas en una base de datos D1, no en el navegador. Resistencia a solicitudes repetidas y a reservas simultáneas.
-- Panel `/gestion`, con fecha, servicio, hora, plano interactivo, asignación de mesa, reserva manual y estados reservada/en mesa/terminada/cancelada.
+- Panel `/gestion`, con fecha, servicio, hora, plano interactivo, asignación de mesa, reserva manual, edición completa de reservas activas y eliminación con confirmación. Cancelar mantiene la reserva en el historial; eliminar la borra.
+- Capacidad provisional: 2 plazas base por mesa y una silla extra flexible; reservas de 3 se asignan a una sola mesa. Con 4 a 6 personas se asignan 2 mesas contiguas del esquema.
 - Actualización automática cada 10 segundos mientras la página está visible. Es consulta periódica, no una conexión instantánea por eventos. Máximo retraso habitual: 10 segundos, más el tiempo de red.
 - Datos de demo aislados por la identidad de cada usuario. Acceso del panel comprobado en el servidor. Sitio privado; no está preparado aún para recibir clientes anónimos.
 - Base de aviso por correo con Resend, desactivada en demo. Sin cuenta, clave, remitente o destinatario configurados; no se ha enviado ni verificado ningún correo real. La pantalla final del cliente lo aclara.
 
 ## Qué sigue provisional
 
-El texto original «9 meses y 18 comensales» se interpreta como 9 mesas y 18 plazas, pendiente de confirmación. El esquema usa nueve mesas de dos plazas en tres filas. No es un plano del local. Solo se permite juntar mesas consecutivas de la misma fila de ese esquema, para grupos de hasta seis.
+El texto original «9 meses y 18 comensales» se interpreta como 9 mesas y 18 plazas, pendiente de confirmar su distribución real. La regla confirmada por Juan es sentar a tres personas en una mesa, añadiendo una silla flexible. El esquema provisional mantiene nueve mesas de dos plazas base en tres filas, con opción de una silla extra por mesa; solo permite juntar mesas consecutivas de una misma fila, hasta seis comensales.
 
 Las horas de apertura están confirmadas. Las horas seleccionables de comida (13:30–15:00), cena (20:00–22:00), el límite de seis personas y la estancia de 90 minutos son reglas de prueba, no decisiones del bar. Deben acordarse los turnos, última hora de llegada, combinaciones reales, duración y política de cancelación antes de activarlas.
 

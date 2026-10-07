@@ -32,8 +32,8 @@ try{
   assert.equal((await api(`/api/reservations/${r1.id}`,'PATCH',{action:'status',status:'completada',version:1})).status,200);
   assert.equal((await add(payload())).status,201,'Completed tables must become available');
   const parallel=await Promise.all(Array.from({length:5},()=>add(payload(6,'15:00'))));
-  assert.ok(parallel.every(r=>[201,409].includes(r.status)));const successful=parallel.filter(r=>r.status===201);assert.equal(successful.length,3,'Exactly three groups of six must fit across nine tables');
-  assert.equal(new Set(successful.flatMap(r=>r.data.reservation.tables)).size,9,'Concurrent allocations must not share tables');
+  assert.ok(parallel.every(r=>[201,409].includes(r.status)));const successful=parallel.filter(r=>r.status===201);assert.equal(successful.length,3,'Three groups of six fit when joined tables must stay within a row');
+  assert.equal(new Set(successful.flatMap(r=>r.data.reservation.tables)).size,6,'Concurrent groups must keep distinct pairs of tables');
   const raceValue={...payload(2,'22:00'),service:'cena'};const race=await add(raceValue);assert.equal(race.status,201);
   const raceId=race.data.reservation.id;
   const moves=await Promise.all([4,7].map(table=>api(`/api/reservations/${raceId}`,'PATCH',{action:'table',table,version:0})));
