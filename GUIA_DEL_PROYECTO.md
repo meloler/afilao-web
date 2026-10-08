@@ -17,7 +17,7 @@ Web pensada primero para móvil, con acceso desde Instagram y Google. La acción
 ## Qué está implementado
 
 - Web adaptada a móvil y ordenador; botón fijo de reserva y acceso a la carta en móvil.
-- Galería única de seis fotos originales del local y sus platos, con gesto de deslizar, flechas, indicadores y navegación por teclado. Las fotos laterales se muestran en perspectiva; respeta la preferencia de movimiento reducido y no avanza sola. Las versiones recortadas para móvil de las gildas y la barra se usan dentro de sus mismas fotos, no como duplicados.
+- Galería única de seis fotos originales del local y sus platos, con gesto de deslizar, flechas, indicadores y navegación por teclado. Al arrastrar, las fotos laterales cambian continuamente de inclinación, tamaño y opacidad según su distancia al centro, como en la referencia aportada; respeta la preferencia de movimiento reducido y no avanza sola. Las versiones recortadas para móvil de las gildas y la barra se usan dentro de sus mismas fotos, no como duplicados.
 - Recorrido de reserva: fecha, personas y hora; nombre y datos opcionales; resultado con referencia.
 - El cierre del recorrido solo confirma el resultado al cliente y permite volver a la web. No muestra el plano de gestión ni promete un correo. El acceso `/gestion` no se enlaza desde la web pública.
 - Reservas guardadas en una base de datos D1, no en el navegador. Resistencia a solicitudes repetidas y a reservas simultáneas.

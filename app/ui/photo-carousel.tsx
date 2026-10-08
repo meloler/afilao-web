@@ -64,12 +64,48 @@ export default function PhotoCarousel() {
     };
   }, [emblaApi]);
 
+  useEffect(() => {
+    if (!emblaApi) return;
+    const viewport = emblaApi.rootNode();
+    const slides = emblaApi.slideNodes();
+
+    const updateDepth = () => {
+      const viewportCenter = viewport.getBoundingClientRect().left + viewport.clientWidth / 2;
+      const positions = slides.map((slide) => {
+        const bounds = slide.getBoundingClientRect();
+        return (bounds.left + bounds.width / 2 - viewportCenter) / bounds.width;
+      });
+
+      slides.forEach((slide, index) => {
+        const card = slide.querySelector<HTMLElement>('.afilao-carousel__card');
+        if (!card) return;
+
+        const offset = positions[index];
+        const side = Math.max(-1, Math.min(1, offset));
+        const distance = Math.min(Math.abs(offset), 1);
+        const depth = reduceMotion ? 0 : 1;
+        const scale = 1 - distance * 0.18 * depth;
+        const tilt = -side * 14 * depth;
+        const shift = -side * 9 * depth;
+
+        card.style.transform = `translateX(${shift}%) rotateY(${tilt}deg) scale(${scale})`;
+        card.style.opacity = String(1 - distance * 0.4 * depth);
+        card.style.zIndex = String(100 - Math.round(Math.abs(offset) * 10));
+      });
+    };
+
+    updateDepth();
+    emblaApi.on('scroll', updateDepth);
+    emblaApi.on('reInit', updateDepth);
+    return () => {
+      emblaApi.off('scroll', updateDepth);
+      emblaApi.off('reInit', updateDepth);
+    };
+  }, [emblaApi, reduceMotion]);
+
   const scrollTo = useCallback((index: number) => emblaApi?.scrollTo(index, reduceMotion), [emblaApi, reduceMotion]);
   const scrollPrevious = useCallback(() => emblaApi?.scrollPrev(reduceMotion), [emblaApi, reduceMotion]);
   const scrollNext = useCallback(() => emblaApi?.scrollNext(reduceMotion), [emblaApi, reduceMotion]);
-  const previousIndex = (selectedIndex - 1 + photos.length) % photos.length;
-  const nextIndex = (selectedIndex + 1) % photos.length;
-
   return (
     <section className="afilao-carousel" aria-label="Fotos de Afilao" aria-roledescription="carrusel">
       <div
@@ -88,26 +124,16 @@ export default function PhotoCarousel() {
         }}
       >
         <div className="afilao-carousel__track">
-          {photos.map((photo, index) => {
-            const position = index === selectedIndex
-              ? 'active'
-              : index === previousIndex
-                ? 'previous'
-                : index === nextIndex
-                  ? 'next'
-                  : 'far';
-
-            return (
-              <div className="afilao-carousel__slide" key={photo.src} aria-hidden={position !== 'active'}>
-                <figure className="afilao-carousel__card" data-position={position}>
+          {photos.map((photo, index) => (
+              <div className="afilao-carousel__slide" key={photo.src} aria-hidden={selectedIndex !== index}>
+                <figure className="afilao-carousel__card">
                   <picture>
                     {photo.mobileSrc && <source media="(max-width: 767px)" srcSet={photo.mobileSrc} />}
                     <img src={photo.src} alt={photo.alt} loading="lazy" draggable={false} />
                   </picture>
                 </figure>
               </div>
-            );
-          })}
+          ))}
         </div>
       </div>
 

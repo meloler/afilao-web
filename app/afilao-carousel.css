@@ -7,12 +7,9 @@
 .afilao-carousel__viewport:focus-visible{outline:3px solid var(--red);outline-offset:-3px}
 .afilao-carousel__track{display:flex;align-items:center}
 .afilao-carousel__slide{flex:0 0 min(68%,680px);min-width:0;padding:15px 10px}
-.afilao-carousel__card{height:clamp(300px,42vw,500px);overflow:hidden;border:1px solid #30241f18;border-radius:10px;background:var(--ink);box-shadow:0 14px 34px #30241f25;transform:scale(.8);transform-origin:center;opacity:.42;transition:transform .42s ease,opacity .42s ease,box-shadow .42s ease}
+.afilao-carousel__card{height:clamp(300px,42vw,500px);overflow:hidden;border:1px solid #30241f18;border-radius:10px;background:var(--ink);box-shadow:0 14px 34px #30241f25;transform:scale(.82);transform-origin:center;opacity:.6;will-change:transform,opacity;transition:box-shadow .2s ease}
 .afilao-carousel__card picture,.afilao-carousel__card img{display:block;width:100%;height:100%}
 .afilao-carousel__card img{object-fit:cover;user-select:none;-webkit-user-drag:none}
-.afilao-carousel__card[data-position=active]{z-index:2;transform:scale(1);opacity:1;box-shadow:0 22px 42px #30241f38}
-.afilao-carousel__card[data-position=previous]{transform:translateX(9%) rotateY(13deg) scale(.84);opacity:.64}
-.afilao-carousel__card[data-position=next]{transform:translateX(-9%) rotateY(-13deg) scale(.84);opacity:.64}
 .afilao-carousel__caption{min-height:32px;text-align:center;color:var(--red);font-family:var(--condensed);font-size:23px;line-height:1.25}
 .afilao-carousel__controls{display:flex;justify-content:center;align-items:center;gap:12px;margin-top:9px}
 .afilao-carousel__arrow{display:grid;place-items:center;width:46px;height:46px;flex:0 0 46px;border:1px solid var(--red);border-radius:50%;background:transparent;color:var(--red);transition:background .16s,color .16s,transform .16s}
