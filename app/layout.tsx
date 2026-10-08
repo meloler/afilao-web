@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import "./afilao-carousel.css";
 
 export const metadata: Metadata = {
   title: "Afilao | Bar, tapeo y reservas en Las Palmas",
