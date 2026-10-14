@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import '../node_modules/tailwindcss/index.css';
 @font-face{font-family:Erica;src:url('/fonts/EricaOne-Regular.ttf') format('truetype');font-weight:400;font-display:swap}
 @font-face{font-family:Bebas;src:url('/fonts/BebasNeue-Regular.ttf') format('truetype');font-weight:400;font-display:swap}
 /* Original brand palette; print-inspired light theme. Layers: header 10, dock 20, native dialogs top layer. */

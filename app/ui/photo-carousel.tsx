@@ -1,10 +1,15 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
-import useEmblaCarousel from 'embla-carousel-react';
+import { useEffect, useRef, useState } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { A11y, EffectCoverflow } from 'swiper/modules';
+import type { Swiper as SwiperInstance } from 'swiper';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
+import 'swiper/css';
+import 'swiper/css/effect-coverflow';
 
-const photos = [
+const photos: { src: string; mobileSrc?: string; alt: string; caption: string }[] = [
+  { src: '/assets/vaso-rojo.webp', alt: 'Un vaso de bebida roja con hielo sobre un posavasos', caption: 'Una y pa casa.' },
   {
     src: '/assets/gildas.webp',
     mobileSrc: '/assets/gildas-mobile.webp',
@@ -12,15 +17,30 @@ const photos = [
     caption: 'Gildas. Y que venga otra ronda.',
   },
   {
-    src: '/assets/bocado.webp',
-    alt: 'Una persona a punto de comer una gilda',
-    caption: 'Un bocado y seguimos.',
-  },
-  {
     src: '/assets/brioche.webp',
     alt: 'Brioche de anchoa y queso sobre una bandeja',
     caption: 'Brioche de anchoa y queso Idiazabal',
   },
+  {
+    src: '/assets/bar.webp',
+    mobileSrc: '/assets/bar-mobile.webp',
+    alt: 'La barra de Afilao, con dos amigos tomando algo',
+    caption: 'La barra de Afilao.',
+  },
+  { src: '/assets/tortilla.webp', alt: 'Una tortilla de papa abierta para compartir', caption: 'Tortilla de papa. Para compartir.' },
+  { src: '/assets/cocina.webp', alt: 'Un cocinero de Afilao trabajando detrás del pase', caption: 'Al otro lado del pase.' },
+  { src: '/assets/vaso-ambar.webp', alt: 'Un vaso de bebida ámbar con hielo sobre la mesa', caption: 'Y que venga otra ronda.' },
+  { src: '/assets/albondigas.webp', alt: 'Albóndigas en salsa con papas servidas en un plato', caption: 'Albóndigas en salsa.' },
+  {
+    src: '/assets/bocado.webp',
+    alt: 'Una persona a punto de comer una gilda',
+    caption: 'Un bocado y seguimos.',
+  },
+  { src: '/assets/tomates.webp', alt: 'Un plato de tomates con queso fresco sobre la mesa', caption: 'Fresco, fresco.' },
+  { src: '/assets/paso-cocina.webp', alt: 'Una persona con una camiseta roja de Afilao junto al pase de cocina', caption: 'El más afilao del barrio.' },
+  { src: '/assets/tosta.webp', alt: 'Dos tostas con una cobertura cremosa y láminas oscuras', caption: 'Un bocado con fundamento.' },
+  { src: '/assets/guiso-servido.webp', alt: 'Una persona sirviéndose de un cuenco de guiso con papas', caption: 'Para mojar pan.' },
+  { src: '/assets/plato-tenedor.webp', alt: 'Un tenedor sobre un plato de la cocina de Afilao', caption: 'Aquí hay cocina.' },
   {
     src: '/assets/guiso.webp',
     alt: 'Guiso de callos y morros con papas',
@@ -31,16 +51,10 @@ const photos = [
     alt: 'Plato terminado y una cerveza en la mesa de Afilao',
     caption: 'De aquí no se sale con hambre.',
   },
-  {
-    src: '/assets/bar.webp',
-    mobileSrc: '/assets/bar-mobile.webp',
-    alt: 'La barra de Afilao, con dos amigos tomando algo',
-    caption: 'La barra de Afilao.',
-  },
-] as const;
+];
 
 export default function PhotoCarousel() {
-  const [viewportRef, emblaApi] = useEmblaCarousel({ align: 'center', loop: true });
+  const swiperRef = useRef<SwiperInstance | null>(null);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [reduceMotion, setReduceMotion] = useState(false);
 
@@ -52,65 +66,14 @@ export default function PhotoCarousel() {
     return () => preference.removeEventListener('change', updatePreference);
   }, []);
 
-  useEffect(() => {
-    if (!emblaApi) return;
-    const updateSelected = () => setSelectedIndex(emblaApi.selectedScrollSnap());
-    updateSelected();
-    emblaApi.on('select', updateSelected);
-    emblaApi.on('reInit', updateSelected);
-    return () => {
-      emblaApi.off('select', updateSelected);
-      emblaApi.off('reInit', updateSelected);
-    };
-  }, [emblaApi]);
+  const speed = reduceMotion ? 0 : 550;
+  const scrollPrevious = () => swiperRef.current?.slidePrev(speed);
+  const scrollNext = () => swiperRef.current?.slideNext(speed);
 
-  useEffect(() => {
-    if (!emblaApi) return;
-    const viewport = emblaApi.rootNode();
-    const slides = emblaApi.slideNodes();
-
-    const updateDepth = () => {
-      const viewportCenter = viewport.getBoundingClientRect().left + viewport.clientWidth / 2;
-      const positions = slides.map((slide) => {
-        const bounds = slide.getBoundingClientRect();
-        return (bounds.left + bounds.width / 2 - viewportCenter) / bounds.width;
-      });
-
-      slides.forEach((slide, index) => {
-        const card = slide.querySelector<HTMLElement>('.afilao-carousel__card');
-        if (!card) return;
-
-        const offset = positions[index];
-        const side = Math.max(-1, Math.min(1, offset));
-        const distance = Math.min(Math.abs(offset), 1);
-        const depth = reduceMotion ? 0 : 1;
-        const scale = 1 - distance * 0.18 * depth;
-        const tilt = -side * 14 * depth;
-        const shift = -side * 9 * depth;
-
-        card.style.transform = `translateX(${shift}%) rotateY(${tilt}deg) scale(${scale})`;
-        card.style.opacity = String(1 - distance * 0.4 * depth);
-        card.style.zIndex = String(100 - Math.round(Math.abs(offset) * 10));
-      });
-    };
-
-    updateDepth();
-    emblaApi.on('scroll', updateDepth);
-    emblaApi.on('reInit', updateDepth);
-    return () => {
-      emblaApi.off('scroll', updateDepth);
-      emblaApi.off('reInit', updateDepth);
-    };
-  }, [emblaApi, reduceMotion]);
-
-  const scrollTo = useCallback((index: number) => emblaApi?.scrollTo(index, reduceMotion), [emblaApi, reduceMotion]);
-  const scrollPrevious = useCallback(() => emblaApi?.scrollPrev(reduceMotion), [emblaApi, reduceMotion]);
-  const scrollNext = useCallback(() => emblaApi?.scrollNext(reduceMotion), [emblaApi, reduceMotion]);
   return (
     <section className="afilao-carousel" aria-label="Fotos de Afilao" aria-roledescription="carrusel">
       <div
-        className="afilao-carousel__viewport"
-        ref={viewportRef}
+        className="afilao-carousel__frame"
         tabIndex={0}
         aria-label="Desliza para ver las fotos; también puedes usar las flechas del teclado"
         onKeyDown={(event) => {
@@ -123,42 +86,52 @@ export default function PhotoCarousel() {
           }
         }}
       >
-        <div className="afilao-carousel__track">
+        <Swiper
+          id="afilao-fotos"
+          key={reduceMotion ? 'reduced' : 'coverflow'}
+          className="afilao-carousel__viewport"
+          modules={[EffectCoverflow, A11y]}
+          effect={reduceMotion ? 'slide' : 'coverflow'}
+          centeredSlides
+          slidesPerView="auto"
+          spaceBetween={12}
+          loop
+          grabCursor
+          slideToClickedSlide
+          speed={speed}
+          initialSlide={selectedIndex}
+          coverflowEffect={{ rotate: 45, stretch: 55, depth: 140, scale: 0.9, slideShadows: false }}
+          a11y={{ itemRoleDescriptionMessage: 'foto', slideLabelMessage: '{{index}} de {{slidesLength}}' }}
+          onSwiper={(swiper) => { swiperRef.current = swiper; }}
+          onSlideChange={(swiper) => setSelectedIndex(swiper.realIndex)}
+        >
           {photos.map((photo, index) => (
-              <div className="afilao-carousel__slide" key={photo.src} aria-hidden={selectedIndex !== index}>
-                <figure className="afilao-carousel__card">
-                  <picture>
-                    {photo.mobileSrc && <source media="(max-width: 767px)" srcSet={photo.mobileSrc} />}
-                    <img src={photo.src} alt={photo.alt} loading="lazy" draggable={false} />
-                  </picture>
-                </figure>
-              </div>
+            <SwiperSlide className="afilao-carousel__slide" key={photo.src} aria-hidden={selectedIndex !== index}>
+              <figure className="afilao-carousel__card">
+                <picture>
+                  {photo.mobileSrc && <source media="(max-width: 767px)" srcSet={photo.mobileSrc} />}
+                  <img src={photo.src} alt={photo.alt} loading="lazy" draggable={false} />
+                </picture>
+              </figure>
+            </SwiperSlide>
           ))}
-        </div>
+        </Swiper>
       </div>
 
       <p className="afilao-carousel__caption" aria-live="polite" aria-atomic="true">{photos[selectedIndex].caption}</p>
 
       <div className="afilao-carousel__controls">
-        <button className="afilao-carousel__arrow" type="button" onClick={scrollPrevious} aria-label="Foto anterior">
+        <button className="afilao-carousel__arrow" type="button" onClick={scrollPrevious} aria-label="Foto anterior" aria-controls="afilao-fotos">
           <ArrowLeft size={20} aria-hidden="true" />
         </button>
-        <div className="afilao-carousel__dots" role="group" aria-label="Elegir una foto">
-          {photos.map((photo, index) => (
-            <button
-              className="afilao-carousel__dot"
-              key={photo.src}
-              type="button"
-              onClick={() => scrollTo(index)}
-              aria-label={`Foto ${index + 1}: ${photo.caption}`}
-              aria-current={index === selectedIndex ? 'true' : undefined}
-            />
-          ))}
-        </div>
-        <button className="afilao-carousel__arrow" type="button" onClick={scrollNext} aria-label="Foto siguiente">
+        <p className="afilao-carousel__counter" aria-label={`Foto ${selectedIndex + 1} de ${photos.length}`}>
+          <span>{String(selectedIndex + 1).padStart(2, '0')}</span><span aria-hidden="true"> / </span><span>{photos.length}</span>
+        </p>
+        <button className="afilao-carousel__arrow" type="button" onClick={scrollNext} aria-label="Foto siguiente" aria-controls="afilao-fotos">
           <ArrowRight size={20} aria-hidden="true" />
         </button>
       </div>
+      <p className="afilao-carousel__hint">Desliza y sigue el tapeo.</p>
     </section>
   );
 }

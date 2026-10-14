@@ -1,0 +1,83 @@
+/* Afilao's entrance: the brand and two choices before the photos. */
+.entry {
+  min-height: calc(100svh - 29px);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  padding: 36px 24px 32px;
+  background: var(--red);
+  color: var(--paper);
+  text-align: center;
+}
+.entry-tagline, .entry-location {
+  font-family: var(--condensed);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: .025em;
+}
+.entry-location { font-size: 17px; }
+.entry-center {
+  width: min(100%, 660px);
+  margin: auto;
+  padding-block: 48px;
+}
+.entry-brand { width: 100%; }
+.entry-mark {
+  display: block;
+  width: 100%;
+  aspect-ratio: 5.35;
+  background: var(--paper);
+  -webkit-mask: url('/assets/logo.webp') center / 115% auto no-repeat;
+  mask: url('/assets/logo.webp') center / 115% auto no-repeat;
+}
+.entry-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.entry-actions {
+  display: grid;
+  gap: 14px;
+  width: min(100%, 380px);
+  margin: 54px auto 0;
+}
+.entry-action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 16px 22px;
+  min-height: 66px;
+  border: 1px solid var(--paper);
+  background: transparent;
+  color: var(--paper);
+  font-family: var(--condensed);
+  font-size: 30px;
+  line-height: 1;
+  text-decoration: none;
+  transition: background .18s ease-out, color .18s ease-out;
+}
+.entry-action--reserve { background: var(--paper); color: var(--red); }
+.entry-action:hover { background: var(--paper); color: var(--red); }
+.entry-action--reserve:hover { background: #eddbc8; }
+.entry-action:focus-visible { outline-color: var(--paper); outline-offset: 5px; }
+.entry-action svg { flex: 0 0 auto; }
+.mobile-dock[hidden] { display: none; }
+.menu-section { scroll-margin-top: 24px; }
+.menu-section:focus { outline: none; }
+@media (max-width: 767px) {
+  .entry { padding: 28px 24px 26px; }
+  .entry-tagline { font-size: 19px; }
+  .entry-location { font-size: 16px; }
+  .entry-center { max-width: 480px; padding-block: 40px; }
+  .entry-actions { margin-top: 42px; max-width: 340px; }
+  .entry-action { font-size: 29px; min-height: 64px; padding: 16px 19px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .entry-action { transition: none; }
+}

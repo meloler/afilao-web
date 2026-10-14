@@ -1,6 +1,14 @@
 # Afilao web
 
-Consultar [GUIA_DEL_PROYECTO.md](GUIA_DEL_PROYECTO.md) antes de continuar. Web y gestión propia de reservas en versión privada de prueba.
+Código fuente público: [meloler/afilao-web](https://github.com/meloler/afilao-web). Puedes descargarlo o clonarlo para trabajar en él. La web y la gestión siguen en versión de prueba; no se deben usar para recibir reservas reales.
+
+Antes de continuar, consulta la [guía del proyecto](GUIA_DEL_PROYECTO.md).
+
+```sh
+git clone https://github.com/meloler/afilao-web.git
+cd afilao-web
+npm install
+```
 
 Desarrollo: node scripts/run-framework.mjs dev
 Verificación de tipos: node node_modules/typescript/bin/tsc --noEmit

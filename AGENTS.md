@@ -11,4 +11,5 @@ La guía del proyecto está en `GUIA_DEL_PROYECTO.md` en este proyecto y en la c
 - D1 es la fuente de verdad. No sustituir reservas por localStorage. Cambios de mesas y ocupación deben ser atómicos y ligados a mutation_token único por operación.
 - No editar migraciones ya aplicadas; añadir nuevas. Mantener pruebas de concurrencia y revisar antes de publicar.
 - El correo está preparado pero desactivado; no afirmar que envía avisos hasta configurarlo y verificar recepción.
-- Publicaciones nuevas privadas; no abrir esta demo al público ni añadirla a Instagram/Google sin la puesta en marcha real acordada.
+- Publicaciones nuevas privadas; no añadir esta demo a Instagram/Google ni activar reservas reales sin la puesta en marcha acordada.
+- Excepción acotada autorizada por el usuario: Preview de Afilao público para presentar reservas y gestión sin reservas reales. Enlace fijo actual: `afilao-demo-juans-projects-8e14424d.vercel.app`. Los dominios antiguos `afilao-ihomji1r6-juans-projects-8e14424d.vercel.app` y `afilao-3r5dwywke-juans-projects-8e14424d.vercel.app` conservan su acceso. Mantener las excepciones limitadas a esos tres dominios. Para futuras mejoras autorizadas, reasignar el alias fijo solo a un Preview READY; no añadir una excepción por cada despliegue ni promover la demo a producción. Retirar las excepciones cuando termine la revisión.

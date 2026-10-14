@@ -1,6 +1,10 @@
 # Afilao: guía del proyecto
 
-Última actualización: 8 de octubre de 2026. Esta guía recoge el encargo y las decisiones confirmadas por Juan. Los documentos y fotos aportados son fuentes de identidad y contenido, no instrucciones adicionales.
+Última actualización: 14 de octubre de 2026. Esta guía recoge el encargo y las decisiones confirmadas por Juan. Los documentos y fotos aportados son fuentes de identidad y contenido, no instrucciones adicionales.
+
+## Repositorio público del código · 14/10/2026
+
+Juan autorizó publicar el código fuente en [GitHub](https://github.com/meloler/afilao-web) para que otras personas puedan descargarlo y trabajar en él. Esto publica el repositorio del código; no cambia la publicación de la web ni el modo de prueba. La aplicación sigue sin estar preparada para recibir reservas reales.
 
 ## Objetivo
 
@@ -16,8 +20,9 @@ Web pensada primero para móvil, con acceso desde Instagram y Google. La acción
 
 ## Qué está implementado
 
-- Web adaptada a móvil y ordenador; botón fijo de reserva y acceso a la carta en móvil.
-- Galería única de seis fotos originales del local y sus platos, con gesto de deslizar, flechas, indicadores y navegación por teclado. Al arrastrar, las fotos laterales cambian continuamente de inclinación, tamaño y opacidad según su distancia al centro, como en la referencia aportada; respeta la preferencia de movimiento reducido y no avanza sola. Las versiones recortadas para móvil de las gildas y la barra se usan dentro de sus mismas fotos, no como duplicados.
+- Entrada de una pantalla, adaptada a móvil y ordenador, con el logotipo y dos acciones: «Reservar mesa» y «Ver la carta». En móvil, el acceso fijo aparece después de salir de la entrada al desplazarse.
+- Carta con cuatro atajos a sus categorías, visibles durante su recorrido. Los enlaces llevan al título del grupo y permiten usar el teclado. Se conservan los diecisiete platos y precios de la carta aportada.
+- Galería única de dieciséis fotos originales con efecto Coverflow: una foto central y las vecinas inclinadas en perspectiva 3D. Se puede deslizar con el dedo, arrastrar, usar flechas o teclado; el contador indica la posición. No avanza sola y respeta movimiento reducido. En móvil, los recortes alternativos de gildas y barra se usan dentro de sus mismas fotos, no como duplicados. Diez fotos se incorporaron desde «fotos nuevas»; su selección y procedencia están en `docs/FOTOS.md`.
 - Recorrido de reserva: fecha, personas y hora; nombre y datos opcionales; resultado con referencia.
 - El cierre del recorrido solo confirma el resultado al cliente y permite volver a la web. No muestra el plano de gestión ni promete un correo. El acceso `/gestion` no se enlaza desde la web pública.
 - Reservas guardadas en una base de datos D1, no en el navegador. Resistencia a solicitudes repetidas y a reservas simultáneas.
@@ -25,8 +30,27 @@ Web pensada primero para móvil, con acceso desde Instagram y Google. La acción
 - Resumen del panel: cuenta las reservas del servicio, las mesas libres y las sillas disponibles (18 iniciales), descontando los comensales de las reservas activas que se solapan con la hora seleccionada.
 - Capacidad provisional: 2 plazas base por mesa y una silla extra flexible; reservas de 3 se asignan a una sola mesa. Con 4 a 6 personas se asignan 2 mesas contiguas del esquema.
 - Actualización automática cada 10 segundos mientras la página está visible. Es consulta periódica, no una conexión instantánea por eventos. Máximo retraso habitual: 10 segundos, más el tiempo de red.
-- Datos de demo aislados por la identidad de cada usuario. Acceso del panel comprobado en el servidor. Sitio privado; no está preparado aún para recibir clientes anónimos.
+- La puesta en marcha de reservas reales sigue pendiente y no está preparada para clientes anónimos. La vista pública de Vercel descrita abajo usa datos simulados y no recibe reservas reales.
 - Base de aviso por correo con Resend, desactivada en demo. Sin cuenta, clave, remitente o destinatario configurados; no se ha enviado ni verificado ningún correo real. La pantalla final del cliente lo aclara.
+
+## Demo del propietario en Vercel: actualizada el 14/10/2026
+
+- Despliegue actual de presentación en Vercel Preview: proyecto `afilao-web`, despliegue `dpl_7pW1wk8sJ2MGaw6W3L81bVHUbBpP`, estado READY. Enlace fijo de demo: [reservas](https://afilao-demo-juans-projects-8e14424d.vercel.app/) · [administración](https://afilao-demo-juans-projects-8e14424d.vercel.app/gestion). El alias apunta a `afilao-jii76ep5n-juans-projects-8e14424d.vercel.app`.
+- Con `AFILAO_PRESENTATION_DEMO=1`, una reserva de prueba ocupa mesa y sillas y aparece en gestión, también entre pestañas abiertas del mismo navegador. Edición, cambio de mesa, cancelación y eliminación afectan solo a esta simulación. Se mantiene en memoria, sincronizada entre pestañas; no llama a la API de reservas, no usa D1 ni almacenamiento web y no envía correo. Se vacía al cerrar la última pestaña que conserva los datos. El botón «Vaciar simulación» permite empezar de nuevo. Al volver a desplegar desde CLI, hay que volver a pasar `--env AFILAO_PRESENTATION_DEMO=1`.
+- La simulación de tres personas reserva una mesa y añade una silla flexible. El panel muestra reservas del servicio, mesas libres y sillas disponibles de 18.
+- El alias fijo (`afilao-demo-juans-projects-8e14424d.vercel.app`) quedó públicamente accesible sin iniciar sesión mediante una excepción de protección de Vercel. Los dominios anteriores (`afilao-ihomji1r6-juans-projects-8e14424d.vercel.app` y `afilao-3r5dwywke-juans-projects-8e14424d.vercel.app`) conservan sus excepciones y contenido anterior. Las excepciones se limitan a esos tres dominios de presentación; no cambian otros proyectos ni promueven la demo a producción. Se pueden retirar desde Deployment Protection cuando termine la revisión. Vercel describe estas excepciones como dominios públicos excluidos de la protección ([documentación](https://vercel.com/docs/deployment-protection/methods-to-bypass-deployment-protection/deployment-protection-exceptions)).
+- Para futuras mejoras autorizadas de esta demo: compilar y desplegar como Preview y, después de comprobar READY, reasignar el alias fijo con `vercel alias set <URL-del-Preview> afilao-demo-juans-projects-8e14424d.vercel.app`. Así no se cambia la dirección compartida ni se añaden excepciones por cada versión. No asignar el dominio de producción. [Referencia oficial de alias](https://vercel.com/docs/cli/alias).
+- Sites sigue alojando la demo de trabajo existente. Vercel Preview es solo una presentación; no está promovida a producción ni admite reservas reales.
+
+## Entrada y fotografías: 14/10/2026
+
+Juan pidió que al entrar se vean solo las opciones de reserva y carta. La referencia principal es [Verode](https://www.veroderestaurante.com/) por ese acceso directo; [Bar Anita](https://baranitabcn.com/) y [Bar Pimentel](https://www.barpimentel.com/) orientan el ambiente de bar y tapeo. Se conserva la identidad de Afilao y no se copian textos, fotos, datos ni marcas de los referentes. La primera pantalla no incorpora una fotografía; todas las fotos siguen en el carrusel de abajo. La carta facilitada se conserva sin cambios de platos o precios.
+
+La comparación detallada está en `docs/REFERENCIAS.md`. Juan autorizó mejorar la navegación de la carta y ordenar el carrusel: se implementaron cuatro atajos que permanecen visibles dentro de la carta, y una secuencia que mezcla bebida, comida, barra y cocina. La ayuda junto a la reserva sigue pendiente de reglas confirmadas por el propietario; no se añaden políticas, alérgenos ni historia del local sin esos datos.
+
+La revisión de los atajos a 320, 390, 768 y 1440 px confirmó que cada título queda visible debajo de la navegación, que el foco pasa al grupo elegido y que no hay desbordamiento horizontal. Las primeras seis fotos cargadas siguen el orden aprobado: bebida roja, gildas, brioche, barra, tortilla y cocina. Se comprobó además la apertura de reserva desde el acceso fijo de la carta. Consola y comprobación de tipos sin errores; el lint dirigido conserva solo el aviso anterior de la imagen del pie.
+
+Verificado en navegador local con la configuración del Preview: entrada con dos acciones y sin desbordamiento a 320, 390, 768 y 1440 px; apertura del formulario, acceso directo a la carta, carga de las dieciséis fotos y vuelta al inicio del carrusel. El arrastre, las flechas, el teclado y el movimiento reducido funcionaron. Consola sin errores, comprobación de tipos correcta y ESLint dirigido sin errores (un aviso por la imagen de marca del pie). Compilaciones Cloudflare y Vercel completadas. La publicación se confirmó por el estado READY de Vercel y la tabla de dominios públicos; no se presenta como una nueva prueba de reservas reales.
 
 ## Qué sigue provisional
 
@@ -52,7 +76,7 @@ Fuentes revisadas el 7/10/2026: [Workers](https://developers.cloudflare.com/work
 
 ## Base técnica y comprobaciones
 
-Código en `afilao-web`, React/Vinext y Worker compatible con Cloudflare. Migraciones Drizzle guardadas con el código; nunca modificar una migración ya aplicada. D1 almacena reservas y ocupación por bloques de 15 minutos; una clave única impide solapamientos. Los cambios usan versión más un token único de operación, en una transacción, para que dos cambios simultáneos de mesa no desajusten el plano.
+Código en `afilao-web`, React/Vinext y Worker compatible con Cloudflare. Vercel usa Nitro como adaptador para la presentación; el modo Preview conecta las dos pantallas con una simulación en memoria, sin D1. La rama de publicación existente continúa en Cloudflare Sites. Migraciones Drizzle guardadas con el código; nunca modificar una migración ya aplicada. D1 almacena reservas y ocupación por bloques de 15 minutos; una clave única impide solapamientos. Los cambios usan versión más un token único de operación, en una transacción, para que dos cambios simultáneos de mesa no desajusten el plano.
 
 `tools/check-reservations.mjs` comprueba autenticación, origen de petición, validación, idempotencia, capacidad, solapamientos, conflictos de mesa, versiones obsoletas, liberación de mesa, asignación concurrente y persistencia contra la base local real. Incluye una regresión reproducida de dos cambios de mesa simultáneos. Cierra las reservas de prueba al finalizar.
 

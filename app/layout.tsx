@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import "./afilao-carousel.css";
+import "./afilao-entry.css";
+import "./afilao-menu.css";
+import { PresentationDemoProvider } from './ui/presentation-demo';
 
 export const metadata: Metadata = {
   title: "Afilao | Bar, tapeo y reservas en Las Palmas",
@@ -22,7 +25,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        <PresentationDemoProvider enabled={process.env.AFILAO_PRESENTATION_DEMO === '1' && process.env.VERCEL_ENV === 'preview'}>
+          {children}
+        </PresentationDemoProvider>
+      </body>
     </html>
   );
 }
