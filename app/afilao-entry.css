@@ -86,7 +86,7 @@
 .entry-stage { min-height: calc(124svh - 29px); background: var(--red); }
 .entry { position: sticky; top: 0; isolation: isolate; min-height: calc(100svh - 29px); padding: 24px 24px 18px; }
 /* Texture covers the entire scroll stage, including the area below the sticky entrance. */
-.entry-stage, .entry { background-color: var(--red); background-image: url('/assets/texture-paper.webp'); background-size: 720px auto; background-blend-mode: multiply; }
+.entry-stage { background-color: var(--red); background-image: url('/assets/texture-paper.webp'); background-size: cover; background-repeat: no-repeat; background-position: center; background-blend-mode: multiply; }
 
 .entry-center { padding-block: clamp(24px, 5svh, 52px); }
 .entry-actions { margin-top: clamp(24px, 4svh, 42px); }
@@ -130,6 +130,11 @@
 .entry-stage { background-position: center top; }
 .entry-center { margin: auto; }
 .entry-actions { margin-bottom: 4px; }
+.entry-mark { animation: afilao-mark-arrive 900ms cubic-bezier(.2,.75,.25,1) both; }
+@keyframes afilao-mark-arrive {
+  from { opacity: 0; transform: translateY(16px) scale(.94); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
 
 /* Compact quick actions stay reachable after the cover scrolls away. */
 .mobile-dock {
@@ -171,4 +176,7 @@
 @media (max-width: 767px) {
   .mobile-dock { padding: 6px; }
   .mobile-dock button, .mobile-dock > a { min-height: 44px; padding: 6px 8px; font-size: 19px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .entry-mark { animation: none; }
 }

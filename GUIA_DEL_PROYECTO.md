@@ -101,7 +101,11 @@ Se difiere el carrusel hasta acercarse a la galería y el formulario hasta su us
 
 ## Navegación portada y carta · 15/10/2026
 
-La textura se repite y cubre tanto la portada fija como toda su etapa roja durante la pausa de scroll. En la portada el horario va en dos filas y el perfil @afilao.bar aparece justo debajo de «Ver la carta», con el símbolo de Instagram en SVG. La página principal muestra la portada y la galería; «Ver la carta» navega a `/carta`, donde están los cinco grupos y precios vigentes. La página de carta enlaza de vuelta al inicio.
+La textura cubre tanto la portada fija como toda su etapa roja durante la pausa de scroll. En la portada el horario va en dos filas y el perfil @afilao.bar aparece justo debajo de «Ver la carta», con el símbolo de Instagram en SVG. La página principal muestra la portada y la galería; «Ver la carta» navega a `/carta`, donde están los cinco grupos y precios vigentes. La página de carta enlaza de vuelta al inicio.
+
+## Portada y avisos legales · 15/10/2026
+
+La etapa roja de portada usa una sola textura escalada para cubrir el bloque sin repetirla ni dejar una junta horizontal; la capa fija permanece transparente. El logotipo entra con una animación breve y se muestra sin animación si el visitante ha pedido movimiento reducido. En el pie se añadieron enlaces a `/privacidad`, `/cookies` y `/aviso-legal`, junto al copyright. El mapa incrustado no conecta con Google hasta que el usuario pulsa «Cargar mapa de Google»; antes se informa de que se transmiten datos técnicos. La privacidad describe el recorrido de demo como temporal y desaconseja introducir datos reales. Las políticas advierten que faltan identidad legal, NIF y correo del titular. Completar esos datos y revisar los textos antes de publicación definitiva o de activar reservas reales.
 
 ## Nosotros, banner y contraportada · 15/10/2026
 

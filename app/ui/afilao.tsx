@@ -2,7 +2,9 @@
 import { useEffect, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import { ArrowDownRight, ArrowUpRight, CalendarDays, Clock3, MapPin, Utensils } from 'lucide-react';
+import { ArrowUpRight, CalendarDays, Clock3, MapPin, Utensils } from 'lucide-react';
+import LegalFooter from './legal-footer';
+import MapEmbed from './map-embed';
 const loadBooking = () => import('./booking');
 const Booking = dynamic(loadBooking, { ssr: false, loading: () => <p className="booking-loading" role="status">Abriendo reservas…</p> });
 const PhotoCarousel = dynamic(() => import('./photo-carousel'), {
@@ -10,7 +12,6 @@ const PhotoCarousel = dynamic(() => import('./photo-carousel'), {
   loading: () => <div className="afilao-carousel-loading" aria-hidden="true" />,
 });
 const mapsUrl = 'https://www.google.com/maps/place//data=!4m2!3m1!1s0xc40956b3c628299:0xd816de221f6104b7';
-const mapEmbedUrl = 'https://maps.google.com/maps?q=C.%20los%20Mart%C3%ADnez%20de%20Escobar%2C%2016%2C%2035007%20Las%20Palmas%20de%20Gran%20Canaria%2C%20Las%20Palmas&z=16&output=embed';
 export default function Afilao({ previewOnly = false }: { previewOnly?: boolean }) {
   const [booking, setBooking] = useState(false);
   const [showDock, setShowDock] = useState(false);
@@ -70,9 +71,9 @@ export default function Afilao({ previewOnly = false }: { previewOnly?: boolean 
     <section id="tapeo" ref={photosRef} className="food-section" tabIndex={-1} aria-labelledby="food-title"><div className="food-title"><p className="section-eyebrow">MESA, BARRA Y SOBREMESA</p><h2 id="food-title">UNA GILDA.<br />Y OTRA RONDA.</h2><p>Un vistazo a lo que se cuece en Afilao.</p></div>{showPhotos ? <PhotoCarousel /> : <div className="afilao-carousel-loading" aria-hidden="true" />}</section>
     <section className="back-cover" aria-labelledby="back-cover-title">
       <div className="back-cover-copy"><p className="section-eyebrow">NOS VEMOS EN LA BARRA</p><h2 id="back-cover-title">Una rápida.<br />Ya si eso.</h2><p className="back-cover-address">C/ Los Martínez de Escobar, 16.<br />El resto, mejor venir a comprobarlo.</p><dl className="back-cover-hours"><div><dt><Clock3 size={18} />Miércoles a sábado</dt><dd>13:30–00:00</dd></div><div><dt><Clock3 size={18} />Domingos</dt><dd>13:30–18:00</dd></div><div><dt>Días de descanso</dt><dd>Lunes y martes</dd></div></dl><a className="back-cover-link" href={mapsUrl} target="_blank" rel="noopener noreferrer"><MapPin size={20} />Abrir en Google Maps<ArrowUpRight size={17} /></a><a className="back-cover-instagram" href="https://www.instagram.com/afilao.bar/" target="_blank" rel="noopener noreferrer">Instagram · @afilao.bar<ArrowUpRight size={16} /></a></div>
-      <div className="back-cover-map"><iframe title="Ubicación de Afilao en Google Maps" src={mapEmbedUrl} loading="lazy" referrerPolicy="no-referrer-when-downgrade" allowFullScreen /></div>
+      <MapEmbed />
     </section>
-  </main><footer className="site-footer"><img src="/assets/logo.webp" width="228" height="43" alt="AFILAO" /><p>Bar. Tapeo. Sin pretensiones.</p><Link href="/carta">Ver la carta<ArrowUpRight size={15} /></Link></footer><nav className="mobile-dock" aria-label="Acceso rápido a reserva y carta" hidden={!showDock || booking}><button onPointerEnter={() => { void loadBooking(); }} onFocus={() => { void loadBooking(); }} onClick={openBooking}><CalendarDays size={20} /> Reservar mesa</button><Link href="/carta"><Utensils size={20} />Ver la carta</Link></nav>{booking && <Booking open close={closeBooking} previewOnly={previewOnly} />}</>;
+  </main><footer className="site-footer"><img src="/assets/logo.webp" width="228" height="43" alt="AFILAO" /><p>Bar. Tapeo. Sin pretensiones.</p><Link href="/carta">Ver la carta<ArrowUpRight size={15} /></Link></footer><LegalFooter /><nav className="mobile-dock" aria-label="Acceso rápido a reserva y carta" hidden={!showDock || booking}><button onPointerEnter={() => { void loadBooking(); }} onFocus={() => { void loadBooking(); }} onClick={openBooking}><CalendarDays size={20} /> Reservar mesa</button><Link href="/carta"><Utensils size={20} />Ver la carta</Link></nav>{booking && <Booking open close={closeBooking} previewOnly={previewOnly} />}</>;
 }
 
 
