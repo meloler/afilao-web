@@ -107,6 +107,8 @@ La textura cubre tanto la portada fija como toda su etapa roja durante la pausa 
 
 La etapa roja de portada usa una sola textura escalada para cubrir el bloque sin repetirla ni dejar una junta horizontal; la capa fija permanece transparente. El logotipo entra con una animación breve y se muestra sin animación si el visitante ha pedido movimiento reducido. En el pie se añadieron enlaces a `/privacidad`, `/cookies` y `/aviso-legal`, junto al copyright. El mapa incrustado no conecta con Google hasta que el usuario pulsa «Cargar mapa de Google»; antes se informa de que se transmiten datos técnicos. La privacidad describe el recorrido de demo como temporal y desaconseja introducir datos reales. Las políticas advierten que faltan identidad legal, NIF y correo del titular. Completar esos datos y revisar los textos antes de publicación definitiva o de activar reservas reales.
 
+Esta actualización está guardada en el commit `f2c6ea6` de `codex/afilao-work`; no está publicada. En esta sesión, el conector de Sites no encontró un proyecto disponible y el checkout no cuenta con una conexión Vercel para crear y validar un Preview.
+
 ## Nosotros, banner y contraportada · 15/10/2026
 
 El rojo texturizado pertenece ahora a la etapa completa de la portada; la capa fija es transparente para que no aparezca un cambio de patrón o color en el borde al desplazarse. La portada deja paso a «Nosotros» con el texto confirmado por Juan y tres fotografías propias (equipo en el pase, tortilla y postre), preparadas como WebP ligeros. El carrusel continúa después como exploración de otras imágenes. Al salir de la portada, una barra fija superior mantiene las acciones de reserva y carta.
