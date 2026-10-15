@@ -12,7 +12,7 @@ Web pensada primero para móvil, con acceso desde Instagram y Google. La acción
 
 ## Datos confirmados
 
-- Marca: Afilao; Las Palmas de Gran Canaria. Instagram: https://www.instagram.com/afilao.bar/ . Enlace de ubicación facilitado: https://share.google/JZ3DVxkvwo0PcfZZr . No se ha inventado una dirección, un teléfono ni una puntuación de Google.
+- Marca: Afilao; Las Palmas de Gran Canaria. Instagram: https://www.instagram.com/afilao.bar/ . Enlace de ubicación facilitado: https://share.google/JZ3DVxkvwo0PcfZZr . Dirección confirmada el 15/10/2026: C. los Martínez de Escobar, 16, 35007 Las Palmas de Gran Canaria, Las Palmas. No se ha inventado un teléfono ni una puntuación de Google.
 - Identidad de `IDENTIDAD VISUAL.txt`: rojo `#c5211e`, beige `#fdf1e3`, Erica One Regular y Bebas Neue Regular. Logotipo y fotos proceden de los archivos del usuario. Fuentes alojadas en la propia web, con sus licencias OFL.
 - Carta transcrita de `carta.jpeg`. Precios y nombres conservados; agrupaciones editoriales para facilitar la lectura. No se han inventado platos, reseñas, alérgenos ni bebidas con precios.
 - Miércoles a sábado: 13:30 a 00:00. Domingo: 13:30 a 18:00. Lunes y martes cerrado. No se ofrecen cenas el domingo.
@@ -89,3 +89,11 @@ Para continuidad: mantener esta guía y la copia del proyecto al día. Documenta
 ## Estabilización local · 15/10/2026
 
 Continuación en `codex/afilao-work`, sin descartar cambios. Base D1 local inicializada con las migraciones existentes; nuevo comando `npm run db:migrate:local`. Compilación, tipos y pruebas de reservas aprobados. Detalles en `docs/ESTABILIDAD.md`. Se mantiene DEMO y la publicación existente.
+
+## Portada, carta y carga · 15/10/2026
+
+El usuario confirmó la dirección completa y el enlace de Google Maps por identificador de lugar. La portada reúne horarios, cierre de lunes y martes, Instagram encima de la dirección y ambos enlaces en pestaña nueva. Se eliminó la sección «Tu próximo una y pa casa». La textura procede de AFILAO RRSS.png y se convirtió a WebP de unos 50 KB; el rojo y beige de marca se conservan. La portada permanece fija durante un tramo corto de scroll nativo (20–24 % de pantalla), sin interceptar rueda o gestos; se desactiva para movimiento reducido y pantallas bajas. Los enlaces directos permiten saltar ese tramo.
+
+La carta vigente es la captura aportada el 15/10/2026: 17 platos en cinco grupos, incluidos Requesón con membrillo y Tejas con helado de vainilla (6 euros cada uno). Se retiraron Tabla de quesos y Zarajos; Cecina pasa a 50 gr. Los precios se transcribieron de la captura y se muestran con dos decimales y apóstrofo, como 9'00€. Se retiró el enlace a la imagen antigua, que contenía precios obsoletos. La captura se pudo leer en el chat, pero el archivo indicado en Downloads no estaba disponible para copiarlo.
+
+Se difiere el carrusel hasta acercarse a la galería y el formulario hasta su uso, con precarga al enfocar o apuntar al botón. El carrusel mantiene cinco imágenes cercanas en vez de las dieciséis y reserva espacio durante la carga. Categorías en una fila desplazable, precios alineados, foco recuperado al cerrar reservas. Verificación a 320, 390, 768 y 1440 px sin desbordamiento, navegación por categorías y formulario correctos; no se promete una puntuación de rendimiento no medida. Trabajo local, DEMO preservado.

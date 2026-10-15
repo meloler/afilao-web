@@ -36,3 +36,10 @@
   .bar-section{padding-inline:20px}
 }
 @media(prefers-reduced-motion:reduce){.afilao-carousel__card,.afilao-carousel__arrow{transition:none}}
+
+/* Reserve the same space before the deferred gallery arrives. */
+.afilao-carousel__caption { min-height: 56px; }
+.afilao-carousel-loading { height: calc(clamp(270px, 40vw, 390px) + 224.5px); min-height: 0; margin: 30px auto 0; }
+@media (max-width: 767px) {
+  .afilao-carousel-loading { height: calc(min(64vw, 360px) + 207.5px); margin-top: 22px; }
+}
