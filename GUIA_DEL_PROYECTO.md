@@ -101,7 +101,7 @@ Se difiere el carrusel hasta acercarse a la galería y el formulario hasta su us
 
 ## Navegación portada y carta · 15/10/2026
 
-La textura cubre tanto la portada fija como toda su etapa roja durante la pausa de scroll. En la portada, el horario y la dirección completa enlazada a Google Maps aparecen debajo de los botones; @afilao.bar queda al pie con su símbolo de Instagram en SVG. La página principal presenta portada, «Nosotros», galería y contraportada; «Ver la carta» navega a `/carta`, donde están los cinco grupos y precios vigentes. El logo se difumina según se desplaza la etapa roja y el banner superior se activa cuando salen de vista los botones. El movimiento se desactiva si el visitante lo ha reducido en el sistema. La página de carta enlaza de vuelta al inicio.
+La textura cubre tanto la portada fija como toda su etapa roja durante la pausa de scroll. En la portada, el horario y la dirección completa enlazada a Google Maps aparecen debajo de los botones; @afilao.bar queda al pie con su símbolo de Instagram en SVG. Los datos prácticos usan una sans serif legible, mientras la frase de cierre tiene menos peso que los horarios y los botones. La página principal presenta portada, «Nosotros», galería y contraportada; «Ver la carta» navega a `/carta`, donde están los cinco grupos y precios vigentes. El logo se difumina según se desplaza la etapa roja y el banner superior se activa cuando salen de vista los botones. El movimiento se desactiva si el visitante lo ha reducido en el sistema. La página de carta enlaza de vuelta al inicio.
 
 ## Portada y avisos legales · 15/10/2026
 
