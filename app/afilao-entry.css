@@ -85,16 +85,18 @@
 /* A short native sticky pause; no wheel/touch interception or scroll loop. */
 .entry-stage { min-height: calc(124svh - 29px); background: var(--red); }
 .entry { position: sticky; top: 0; isolation: isolate; min-height: calc(100svh - 29px); padding: 24px 24px 18px; }
-.entry::before { content: ''; position: absolute; inset: 0; z-index: -1; background: url('/assets/texture-paper.webp') center / 720px auto; mix-blend-mode: multiply; opacity: .65; pointer-events: none; }
+/* Texture covers the entire scroll stage, including the area below the sticky entrance. */
+.entry-stage, .entry { background-color: var(--red); background-image: url('/assets/texture-paper.webp'); background-size: 720px auto; background-blend-mode: multiply; }
+
 .entry-center { padding-block: clamp(24px, 5svh, 52px); }
 .entry-actions { margin-top: clamp(24px, 4svh, 42px); }
 .entry-details { display: grid; justify-items: center; gap: 4px; }
-.entry-hours { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px 36px; margin: 0; font-family: var(--condensed); font-size: 20px; line-height: 1.25; }
+.entry-hours { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; margin: 0; font-family: var(--condensed); font-size: 20px; line-height: 1.25; }
 .entry-hours div { display: flex; gap: 10px; }
 .entry-hours dd { margin: 0; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .entry-closed { font-size: 12px; margin: 3px 0 6px; }
 .entry-social, .entry-address, .entry-discover { display: inline-flex; align-items: center; justify-content: center; gap: 9px; min-height: 44px; text-decoration: none; }
-.entry-social { font-family: var(--condensed); font-size: 24px; }
+.entry-social { margin-top: 12px; font-family: var(--condensed); font-size: 24px; }
 .entry-address { font-size: 13px; line-height: 1.45; }
 .entry-address svg { flex-shrink: 0; }
 .entry-social:hover, .entry-address:hover { text-decoration: underline; }

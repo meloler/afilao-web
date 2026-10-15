@@ -97,3 +97,8 @@ El usuario confirmó la dirección completa y el enlace de Google Maps por ident
 La carta vigente es la captura aportada el 15/10/2026: 17 platos en cinco grupos, incluidos Requesón con membrillo y Tejas con helado de vainilla (6 euros cada uno). Se retiraron Tabla de quesos y Zarajos; Cecina pasa a 50 gr. Los precios se transcribieron de la captura y se muestran con dos decimales y apóstrofo, como 9'00€. Se retiró el enlace a la imagen antigua, que contenía precios obsoletos. La captura se pudo leer en el chat, pero el archivo indicado en Downloads no estaba disponible para copiarlo.
 
 Se difiere el carrusel hasta acercarse a la galería y el formulario hasta su uso, con precarga al enfocar o apuntar al botón. El carrusel mantiene cinco imágenes cercanas en vez de las dieciséis y reserva espacio durante la carga. Categorías en una fila desplazable, precios alineados, foco recuperado al cerrar reservas. Verificación a 320, 390, 768 y 1440 px sin desbordamiento, navegación por categorías y formulario correctos; no se promete una puntuación de rendimiento no medida. Trabajo local, DEMO preservado.
+
+
+## Navegación portada y carta · 15/10/2026
+
+La textura se repite y cubre tanto la portada fija como toda su etapa roja durante la pausa de scroll. En la portada el horario va en dos filas y el perfil @afilao.bar aparece justo debajo de «Ver la carta», con el símbolo de Instagram en SVG. La página principal muestra la portada y la galería; «Ver la carta» navega a `/carta`, donde están los cinco grupos y precios vigentes. La página de carta enlaza de vuelta al inicio.
