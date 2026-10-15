@@ -114,3 +114,7 @@ Esta actualización está guardada en el commit `f2c6ea6` de `codex/afilao-work`
 El rojo texturizado pertenece ahora a la etapa completa de la portada; la capa fija es transparente para que no aparezca un cambio de patrón o color en el borde al desplazarse. La portada deja paso a «Nosotros» con el texto confirmado por Juan y tres fotografías propias (equipo en el pase, tortilla y postre), preparadas como WebP ligeros. El carrusel continúa después como exploración de otras imágenes. Al salir de la portada, una barra fija superior mantiene las acciones de reserva y carta.
 
 La contraportada reúne de nuevo dirección, horario, descanso, Instagram y un mapa Google incrustado de carga diferida, con enlace directo para abrir indicaciones. El estudio de escritorio cualitativo y sus límites están en `docs/ESTUDIO-MERCADO.md`. Los sitios revisados no ofrecen métricas de conversión o rendimiento; no se atribuyen impactos cuantitativos a las referencias.
+
+## Revisión móvil · 15/10/2026
+
+Portada, acciones, horarios, dirección, carrusel, contraportada y pie revisados a 320 y 390 px; el ancho del documento coincide con el viewport. El banner de reserva y carta sigue visible al dejar atrás los botones de portada. Las fotos del carrusel cargan al acercarse a la sección. En móvil, el aviso previo al mapa ocupa 220 px en vez de 360 px; conserva el consentimiento explícito y el mapa incrustado mantiene 360 px de altura al activarse. Prueba manual en navegador local; sin publicación nueva.

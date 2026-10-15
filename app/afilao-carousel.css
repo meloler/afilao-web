@@ -94,7 +94,8 @@
   .back-cover { grid-template-columns: 1fr; }
   .back-cover-copy { max-width: none; padding: 54px 22px 38px; }
   .back-cover h2 { font-size: 50px; }
-  .back-cover-map, .back-cover-map iframe { min-height: 360px; }
+  .back-cover-map { min-height: 0; }
+  .back-cover-map iframe { min-height: 360px; }
   .back-cover-instagram { margin-left: 12px; }
 }
 @media(prefers-reduced-motion: reduce) { .about-gallery img { transition: none; } }

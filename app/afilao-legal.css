@@ -44,7 +44,7 @@
 @media (max-width: 767px) {
   .legal-footer { margin-inline: 20px; margin-bottom: 90px; padding-bottom: 24px; }
   .legal-footer nav { gap: 4px 14px; }
-  .map-consent { min-height: 360px; padding: 24px; }
+  .map-consent { min-height: 220px; padding: 24px; }
   .legal-header { padding: 18px 20px; }
   .legal-header img { width: 125px; }
   .legal-content { width: calc(100% - 40px); padding: 44px 0 52px; }
