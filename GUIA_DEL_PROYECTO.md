@@ -85,3 +85,7 @@ Comprobado también en el navegador: reserva desde móvil, aparición automátic
 El acceso a `/gestion` usa las herramientas de identidad del sitio. La agenda real necesitará autorización explícita del propietario; estar identificado no basta para ser administrador. Las claves de correo solo pueden vivir en el servidor. Las pruebas no envían correos.
 
 Para continuidad: mantener esta guía y la copia del proyecto al día. Documentar cambios aceptados y separar siempre datos confirmados de configuraciones provisionales. No convertir esta primera revisión en una web pública operativa sin completar lo pendiente.
+
+## Estabilización local · 15/10/2026
+
+Continuación en `codex/afilao-work`, sin descartar cambios. Base D1 local inicializada con las migraciones existentes; nuevo comando `npm run db:migrate:local`. Compilación, tipos y pruebas de reservas aprobados. Detalles en `docs/ESTABILIDAD.md`. Se mantiene DEMO y la publicación existente.
