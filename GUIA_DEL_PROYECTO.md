@@ -12,7 +12,7 @@ Web pensada primero para móvil, con acceso desde Instagram y Google. La acción
 
 ## Datos confirmados
 
-- Marca: Afilao; Las Palmas de Gran Canaria. Instagram: https://www.instagram.com/afilao.bar/ . Enlace de ubicación facilitado: https://share.google/JZ3DVxkvwo0PcfZZr . No se ha inventado una dirección, un teléfono ni una puntuación de Google.
+- Marca: Afilao; Las Palmas de Gran Canaria. Instagram: https://www.instagram.com/afilao.bar/ . Enlace de ubicación facilitado: https://share.google/JZ3DVxkvwo0PcfZZr . Dirección confirmada el 15/10/2026: C. los Martínez de Escobar, 16, 35007 Las Palmas de Gran Canaria, Las Palmas. No se ha inventado un teléfono ni una puntuación de Google.
 - Identidad de `IDENTIDAD VISUAL.txt`: rojo `#c5211e`, beige `#fdf1e3`, Erica One Regular y Bebas Neue Regular. Logotipo y fotos proceden de los archivos del usuario. Fuentes alojadas en la propia web, con sus licencias OFL.
 - Carta transcrita de `carta.jpeg`. Precios y nombres conservados; agrupaciones editoriales para facilitar la lectura. No se han inventado platos, reseñas, alérgenos ni bebidas con precios.
 - Miércoles a sábado: 13:30 a 00:00. Domingo: 13:30 a 18:00. Lunes y martes cerrado. No se ofrecen cenas el domingo.
@@ -85,3 +85,36 @@ Comprobado también en el navegador: reserva desde móvil, aparición automátic
 El acceso a `/gestion` usa las herramientas de identidad del sitio. La agenda real necesitará autorización explícita del propietario; estar identificado no basta para ser administrador. Las claves de correo solo pueden vivir en el servidor. Las pruebas no envían correos.
 
 Para continuidad: mantener esta guía y la copia del proyecto al día. Documentar cambios aceptados y separar siempre datos confirmados de configuraciones provisionales. No convertir esta primera revisión en una web pública operativa sin completar lo pendiente.
+
+## Estabilización local · 15/10/2026
+
+Continuación en `codex/afilao-work`, sin descartar cambios. Base D1 local inicializada con las migraciones existentes; nuevo comando `npm run db:migrate:local`. Compilación, tipos y pruebas de reservas aprobados. Detalles en `docs/ESTABILIDAD.md`. Se mantiene DEMO y la publicación existente.
+
+## Portada, carta y carga · 15/10/2026
+
+El usuario confirmó la dirección completa y el enlace de Google Maps por identificador de lugar. La portada reúne horarios, cierre de lunes y martes, Instagram encima de la dirección y ambos enlaces en pestaña nueva. Se eliminó la sección «Tu próximo una y pa casa». La textura procede de AFILAO RRSS.png y se convirtió a WebP de unos 50 KB; el rojo y beige de marca se conservan. La portada permanece fija durante un tramo corto de scroll nativo (20–24 % de pantalla), sin interceptar rueda o gestos; se desactiva para movimiento reducido y pantallas bajas. Los enlaces directos permiten saltar ese tramo.
+
+La carta vigente es la captura aportada el 15/10/2026: 17 platos en cinco grupos, incluidos Requesón con membrillo y Tejas con helado de vainilla (6 euros cada uno). Se retiraron Tabla de quesos y Zarajos; Cecina pasa a 50 gr. Los precios se transcribieron de la captura y se muestran con dos decimales y apóstrofo, como 9'00€. Se retiró el enlace a la imagen antigua, que contenía precios obsoletos. La captura se pudo leer en el chat, pero el archivo indicado en Downloads no estaba disponible para copiarlo.
+
+Se difiere el carrusel hasta acercarse a la galería y el formulario hasta su uso, con precarga al enfocar o apuntar al botón. El carrusel mantiene cinco imágenes cercanas en vez de las dieciséis y reserva espacio durante la carga. Categorías en una fila desplazable, precios alineados, foco recuperado al cerrar reservas. Verificación a 320, 390, 768 y 1440 px sin desbordamiento, navegación por categorías y formulario correctos; no se promete una puntuación de rendimiento no medida. Trabajo local, DEMO preservado.
+
+
+## Navegación portada y carta · 15/10/2026
+
+La textura cubre tanto la portada fija como toda su etapa roja durante la pausa de scroll. En la portada, el horario y la dirección completa enlazada a Google Maps aparecen debajo de los botones; @afilao.bar queda al pie con su símbolo de Instagram en SVG. Los datos prácticos usan una sans serif legible, mientras la frase de cierre tiene menos peso que los horarios y los botones. La página principal presenta portada, «Nosotros», galería y contraportada; «Ver la carta» navega a `/carta`, donde están los cinco grupos y precios vigentes. El logo se difumina según se desplaza la etapa roja y el banner superior se activa cuando salen de vista los botones. El movimiento se desactiva si el visitante lo ha reducido en el sistema. La página de carta enlaza de vuelta al inicio.
+
+## Portada y avisos legales · 15/10/2026
+
+La etapa roja de portada usa una sola textura escalada para cubrir el bloque sin repetirla ni dejar una junta horizontal; la capa fija permanece transparente. El logotipo entra con una animación breve y se muestra sin animación si el visitante ha pedido movimiento reducido. En el pie se añadieron enlaces a `/privacidad`, `/cookies` y `/aviso-legal`, junto al copyright. El mapa incrustado no conecta con Google hasta que el usuario pulsa «Cargar mapa de Google»; antes se informa de que se transmiten datos técnicos. La privacidad describe el recorrido de demo como temporal y desaconseja introducir datos reales. Las políticas advierten que faltan identidad legal, NIF y correo del titular. Completar esos datos y revisar los textos antes de publicación definitiva o de activar reservas reales.
+
+Esta actualización está guardada en el commit `f2c6ea6` de `codex/afilao-work`; no está publicada. En esta sesión, el conector de Sites no encontró un proyecto disponible y el checkout no cuenta con una conexión Vercel para crear y validar un Preview.
+
+## Nosotros, banner y contraportada · 15/10/2026
+
+El rojo texturizado pertenece ahora a la etapa completa de la portada; la capa fija es transparente para que no aparezca un cambio de patrón o color en el borde al desplazarse. La portada deja paso a «Nosotros» con el texto confirmado por Juan y tres fotografías propias (equipo en el pase, tortilla y postre), preparadas como WebP ligeros. El carrusel continúa después como exploración de otras imágenes. Al salir de la portada, una barra fija superior mantiene las acciones de reserva y carta.
+
+La contraportada reúne de nuevo dirección, horario, descanso, Instagram y un mapa Google incrustado de carga diferida, con enlace directo para abrir indicaciones. El estudio de escritorio cualitativo y sus límites están en `docs/ESTUDIO-MERCADO.md`. Los sitios revisados no ofrecen métricas de conversión o rendimiento; no se atribuyen impactos cuantitativos a las referencias.
+
+## Revisión móvil · 15/10/2026
+
+Portada, acciones, horarios, dirección, carrusel, contraportada y pie revisados a 320 y 390 px; el ancho del documento coincide con el viewport. El banner de reserva y carta sigue visible al dejar atrás los botones de portada. Las fotos del carrusel cargan al acercarse a la sección. En móvil, el aviso previo al mapa ocupa 220 px en vez de 360 px; conserva el consentimiento explícito y el mapa incrustado mantiene 360 px de altura al activarse. Prueba manual en navegador local; sin publicación nueva.

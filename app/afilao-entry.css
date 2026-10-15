@@ -81,3 +81,127 @@
 @media (prefers-reduced-motion: reduce) {
   .entry-action { transition: none; }
 }
+
+/* A short native sticky pause; no wheel/touch interception or scroll loop. */
+.entry-stage { min-height: calc(124svh - 29px); background: var(--red); }
+.entry { position: sticky; top: 0; isolation: isolate; min-height: calc(100svh - 29px); padding: 24px 24px 18px; }
+/* Texture covers the entire scroll stage, including the area below the sticky entrance. */
+.entry-stage { background-color: var(--red); background-image: url('/assets/texture-paper.webp'); background-size: cover; background-repeat: no-repeat; background-position: center; background-blend-mode: multiply; }
+
+.entry-center { padding-block: clamp(24px, 5svh, 52px); }
+.entry-actions { margin-top: clamp(24px, 4svh, 42px); }
+.entry-details { display: grid; justify-items: center; gap: 4px; }
+.entry-hours { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; margin: 0; font-family: var(--condensed); font-size: 20px; line-height: 1.25; }
+.entry-hours div { display: flex; gap: 10px; }
+.entry-hours dd { margin: 0; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.entry-closed { font-size: 12px; margin: 3px 0 6px; }
+.entry-social, .entry-address, .entry-discover { display: inline-flex; align-items: center; justify-content: center; gap: 9px; min-height: 44px; text-decoration: none; }
+.entry-social { margin-top: 12px; font-family: var(--condensed); font-size: 24px; }
+.entry-address { font-size: 13px; line-height: 1.45; }
+.entry-address svg { flex-shrink: 0; }
+.entry-social:hover, .entry-address:hover { text-decoration: underline; }
+.entry a:focus-visible { outline-color: var(--paper); }
+.entry-discover { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; margin-top: 4px; }
+.booking-loading { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); z-index: 40; background: var(--paper); color: var(--red); padding: 14px 24px; border: 1px solid var(--red); }
+@media (max-width: 767px) {
+  .entry-stage { min-height: calc(120svh - 29px); }
+  .entry { padding: 22px 20px 12px; }
+  .entry-center { padding-block: 26px; }
+  .entry-actions { margin-top: 28px; gap: 10px; }
+  .entry-action { min-height: 56px; padding: 13px 18px; font-size: 27px; }
+  .entry-hours { font-size: 18px; gap: 5px 24px; }
+  .entry-address { font-size: 12px; }
+}
+@media (max-height: 700px) and (max-width: 767px) {
+  .entry { padding-top: 16px; }
+  .entry-tagline { font-size: 16px; }
+  .entry-center { padding-block: 18px; }
+  .entry-brand { max-width: 310px; margin-inline: auto; }
+  .entry-actions { margin-top: 20px; }
+}
+/* Short landscape screens and motion-sensitive users keep a normal page flow. */
+@media (max-height: 550px), (prefers-reduced-motion: reduce) {
+  .entry-stage { min-height: 0; }
+  .entry { position: relative; }
+}
+
+/* The sticky entrance is transparent so the textured red stage remains continuous. */
+.entry { background: transparent; }
+.entry-stage { background-position: center top; }
+.entry-center { margin: auto; }
+.entry-actions { margin-bottom: 4px; }
+.entry-mark { animation: afilao-mark-arrive 900ms cubic-bezier(.2,.75,.25,1) both; }
+@keyframes afilao-mark-arrive {
+  from { opacity: 0; transform: translateY(16px) scale(.94); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Compact quick actions stay reachable after the cover scrolls away. */
+.mobile-dock {
+  position: fixed;
+  z-index: 30;
+  top: calc(10px + env(safe-area-inset-top));
+  bottom: auto;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(calc(100% - 32px), 720px);
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  padding: 8px;
+  background: color-mix(in srgb, var(--paper) 95%, transparent);
+  border: 1px solid var(--red);
+  box-shadow: 0 8px 24px #30241f20;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+.mobile-dock button, .mobile-dock > a {
+  display: flex;
+  min-height: 46px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 7px 12px;
+  border: 0;
+  background: var(--red);
+  color: var(--paper);
+  text-decoration: none;
+  font-family: var(--condensed);
+  font-size: 21px;
+  line-height: 1.1;
+}
+.mobile-dock > a { border: 1px solid var(--red); background: var(--paper); color: var(--red); }
+.mobile-dock[hidden] { display: none; }
+@media (min-width: 768px) { .mobile-dock { display: grid; } }
+@media (max-width: 767px) {
+  .mobile-dock { padding: 6px; }
+  .mobile-dock button, .mobile-dock > a { min-height: 44px; padding: 6px 8px; font-size: 19px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .entry-mark { animation: none; }
+}
+
+/* Scroll cues follow the cover exit without adding work to the render cycle. */
+.entry-brand { opacity: var(--cover-opacity, 1); filter: blur(var(--cover-blur, 0px)); transform: translate3d(0, var(--cover-shift, 0px), 0) scale(var(--cover-scale, 1)); will-change: opacity, filter, transform; }
+.entry-social { justify-self: center; align-self: end; margin: 0; font-size: 22px; }
+.entry-details { margin-top: 14px; gap: 5px; }
+.entry-hours { gap: 4px; font-family: Arial, Helvetica, sans-serif; font-size: 14px; line-height: 1.4; }
+.entry-hours div { gap: 14px; }
+.entry-hours dt { font-weight: 600; }
+.entry-hours dd { font-weight: 400; }
+.entry-closed { margin: 0; font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 1.4; opacity: .82; }
+.entry-address { gap: 7px; min-height: 40px; font-family: Arial, Helvetica, sans-serif; font-size: 13px; line-height: 1.4; }
+.entry-address:hover { text-decoration: underline; text-underline-offset: 3px; }
+.mobile-dock { animation: dock-arrive 220ms ease-out both; }
+@keyframes dock-arrive { from { opacity: 0; translate: 0 -8px; } to { opacity: 1; translate: 0 0; } }
+@media (max-width: 767px) {
+  .entry-details { margin-top: 10px; }
+  .entry-hours { font-size: 13px; }
+  .entry-closed { font-size: 11px; }
+  .entry-address { font-size: 12px; }
+  .entry-social { font-size: 21px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .entry-brand { opacity: 1; filter: none; transform: none; }
+  .mobile-dock { animation: none; }
+}

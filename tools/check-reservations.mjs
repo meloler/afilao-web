@@ -5,7 +5,10 @@ const cookie=login.headers.getSetCookie().map(c=>c.split(';')[0]).join('; ');
 assert.ok(cookie,'Local development sign-in must return a cookie');
 const parts=new Intl.DateTimeFormat('en-CA',{timeZone:'Atlantic/Canary',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());
 const current=['year','month','day'].map(k=>parts.find(p=>p.type===k).value).join('-');
-const d=new Date(`${current}T12:00:00Z`);d.setUTCDate(d.getUTCDate()+14);const date=d.toISOString().slice(0,10);
+const d=new Date(`${current}T12:00:00Z`);d.setUTCDate(d.getUTCDate()+14);
+// The suite exercises lunch and dinner: select Wednesday through Saturday.
+while ([0,1,2].includes(d.getUTCDay())) d.setUTCDate(d.getUTCDate()+1);
+const date=d.toISOString().slice(0,10);
 const created=[];
 async function api(path,method='GET',data,auth=true,origin=base){const r=await fetch(base+path,{method,headers:{...(auth?{Cookie:cookie}:{}),Origin:origin,'Content-Type':'application/json'},body:data===undefined?undefined:JSON.stringify(data)});const text=await r.text();return {status:r.status,data:r.headers.get('content-type')?.includes('json')?JSON.parse(text):{error:text}};}
 function payload(people=2,time='13:30'){return {date,time,service:'comida',people,name:'Comprobación automática',phone:'',notes:'Datos de prueba',idempotencyKey:crypto.randomUUID()};}

@@ -54,3 +54,21 @@
 @media (prefers-reduced-motion: reduce) {
   :root { scroll-behavior: auto; }
 }
+
+/* Five groups fit in one touch-scrollable row without covering the menu. */
+.menu-shortcuts { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: thin; gap: 8px; }
+.menu-shortcuts a { flex: 0 0 auto; white-space: nowrap; }
+.menu-group dl > div { grid-template-columns: minmax(0, 1fr) 5ch; }
+.menu-group dd { text-align: right; font-variant-numeric: tabular-nums; }
+.menu-group { scroll-margin-top: 10px; }
+@media (max-width: 767px) {
+  .menu-shortcuts { display: flex; margin-inline: -20px; padding-inline: 20px; }
+  .menu-shortcuts a { padding-inline: 14px; }
+  .menu-group { scroll-margin-top: 82px; }
+}
+
+.menu-page-header { max-width: 1380px; margin: auto; padding: 24px 48px; display: flex; justify-content: space-between; gap: 20px; align-items: center; border-bottom: 1px solid var(--line); }
+.menu-page-header a, .menu-page-footer a { display: inline-flex; align-items: center; min-height: 44px; font-weight: 600; }
+.menu-page-header span { font-family: var(--condensed); font-size: 20px; }
+.menu-page-footer { max-width: 1380px; margin: auto; padding: 0 48px 32px; }
+@media(max-width:767px) { .menu-page-header { padding: 12px 20px; } .menu-page-header span { display: none; } .menu-page-footer { padding-inline: 20px; } }

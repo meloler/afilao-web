@@ -105,16 +105,19 @@ export default function PhotoCarousel() {
           onSwiper={(swiper) => { swiperRef.current = swiper; }}
           onSlideChange={(swiper) => setSelectedIndex(swiper.realIndex)}
         >
-          {photos.map((photo, index) => (
+          {photos.map((photo, index) => {
+            const distance = Math.abs(selectedIndex - index);
+            const nearby = Math.min(distance, photos.length - distance) <= 2;
+            return (
             <SwiperSlide className="afilao-carousel__slide" key={photo.src} aria-hidden={selectedIndex !== index}>
               <figure className="afilao-carousel__card">
-                <picture>
+                {nearby && <picture>
                   {photo.mobileSrc && <source media="(max-width: 767px)" srcSet={photo.mobileSrc} />}
-                  <img src={photo.src} alt={photo.alt} loading="lazy" draggable={false} />
-                </picture>
+                  <img src={photo.src} alt={photo.alt} loading="lazy" decoding="async" width="640" height="640" draggable={false} />
+                </picture>}
               </figure>
             </SwiperSlide>
-          ))}
+          ); })}
         </Swiper>
       </div>
 

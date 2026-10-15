@@ -3,6 +3,7 @@ import "./globals.css";
 import "./afilao-carousel.css";
 import "./afilao-entry.css";
 import "./afilao-menu.css";
+import "./afilao-legal.css";
 import { PresentationDemoProvider } from './ui/presentation-demo';
 
 export const metadata: Metadata = {
