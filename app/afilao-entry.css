@@ -83,7 +83,7 @@
 }
 
 /* A short native sticky pause; no wheel/touch interception or scroll loop. */
-.entry-stage { padding-bottom: 24svh; background: var(--red); }
+.entry-stage { min-height: calc(124svh - 29px); background: var(--red); }
 .entry { position: sticky; top: 0; isolation: isolate; min-height: calc(100svh - 29px); padding: 24px 24px 18px; }
 .entry::before { content: ''; position: absolute; inset: 0; z-index: -1; background: url('/assets/texture-paper.webp') center / 720px auto; mix-blend-mode: multiply; opacity: .65; pointer-events: none; }
 .entry-center { padding-block: clamp(24px, 5svh, 52px); }
@@ -102,7 +102,7 @@
 .entry-discover { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; margin-top: 4px; }
 .booking-loading { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); z-index: 40; background: var(--paper); color: var(--red); padding: 14px 24px; border: 1px solid var(--red); }
 @media (max-width: 767px) {
-  .entry-stage { padding-bottom: 20svh; }
+  .entry-stage { min-height: calc(120svh - 29px); }
   .entry { padding: 22px 20px 12px; }
   .entry-center { padding-block: 26px; }
   .entry-actions { margin-top: 28px; gap: 10px; }
@@ -119,6 +119,6 @@
 }
 /* Short landscape screens and motion-sensitive users keep a normal page flow. */
 @media (max-height: 550px), (prefers-reduced-motion: reduce) {
-  .entry-stage { padding-bottom: 0; }
+  .entry-stage { min-height: 0; }
   .entry { position: relative; }
 }
