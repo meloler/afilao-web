@@ -124,3 +124,51 @@
   .entry-stage { min-height: 0; }
   .entry { position: relative; }
 }
+
+/* The sticky entrance is transparent so the textured red stage remains continuous. */
+.entry { background: transparent; }
+.entry-stage { background-position: center top; }
+.entry-center { margin: auto; }
+.entry-actions { margin-bottom: 4px; }
+
+/* Compact quick actions stay reachable after the cover scrolls away. */
+.mobile-dock {
+  position: fixed;
+  z-index: 30;
+  top: calc(10px + env(safe-area-inset-top));
+  bottom: auto;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(calc(100% - 32px), 720px);
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  padding: 8px;
+  background: color-mix(in srgb, var(--paper) 95%, transparent);
+  border: 1px solid var(--red);
+  box-shadow: 0 8px 24px #30241f20;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+.mobile-dock button, .mobile-dock > a {
+  display: flex;
+  min-height: 46px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 7px 12px;
+  border: 0;
+  background: var(--red);
+  color: var(--paper);
+  text-decoration: none;
+  font-family: var(--condensed);
+  font-size: 21px;
+  line-height: 1.1;
+}
+.mobile-dock > a { border: 1px solid var(--red); background: var(--paper); color: var(--red); }
+.mobile-dock[hidden] { display: none; }
+@media (min-width: 768px) { .mobile-dock { display: grid; } }
+@media (max-width: 767px) {
+  .mobile-dock { padding: 6px; }
+  .mobile-dock button, .mobile-dock > a { min-height: 44px; padding: 6px 8px; font-size: 19px; }
+}

@@ -102,3 +102,9 @@ Se difiere el carrusel hasta acercarse a la galería y el formulario hasta su us
 ## Navegación portada y carta · 15/10/2026
 
 La textura se repite y cubre tanto la portada fija como toda su etapa roja durante la pausa de scroll. En la portada el horario va en dos filas y el perfil @afilao.bar aparece justo debajo de «Ver la carta», con el símbolo de Instagram en SVG. La página principal muestra la portada y la galería; «Ver la carta» navega a `/carta`, donde están los cinco grupos y precios vigentes. La página de carta enlaza de vuelta al inicio.
+
+## Nosotros, banner y contraportada · 15/10/2026
+
+El rojo texturizado pertenece ahora a la etapa completa de la portada; la capa fija es transparente para que no aparezca un cambio de patrón o color en el borde al desplazarse. La portada deja paso a «Nosotros» con el texto confirmado por Juan y tres fotografías propias (equipo en el pase, tortilla y postre), preparadas como WebP ligeros. El carrusel continúa después como exploración de otras imágenes. Al salir de la portada, una barra fija superior mantiene las acciones de reserva y carta.
+
+La contraportada reúne de nuevo dirección, horario, descanso, Instagram y un mapa Google incrustado de carga diferida, con enlace directo para abrir indicaciones. El estudio de escritorio cualitativo y sus límites están en `docs/ESTUDIO-MERCADO.md`. Los sitios revisados no ofrecen métricas de conversión o rendimiento; no se atribuyen impactos cuantitativos a las referencias.
