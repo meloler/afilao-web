@@ -18,3 +18,9 @@ Se priorizaron tres imágenes del archivo fotográfico de AFILAO: equipo en el p
 ## Límites
 
 Los sitios públicos muestran sus mensajes y estructuras, pero no revelan conversión, velocidad móvil medida ni comportamiento de clientes. No hay base para afirmar que un patrón aumente ventas en AFILAO sin analítica o pruebas con usuarios. Estas decisiones priorizan legibilidad, acceso rápido a las tareas y prueba visual del ambiente y producto.
+
+## Referentes adicionales · 15/10/2026
+
+Se revisaron [Bar Pimentel](https://www.barpimentel.com/), [Filito](https://www.filito.bar/), [Bar Cañete](https://barcanete.com/), [Bar Anita](https://baranitabcn.com/) y [Bar Nuri](https://barnuribarcelona.com/es/). Se repiten cinco patrones útiles: el primer pantallazo deja claras carta y reserva; una historia breve explica el carácter del bar; las fotos de comida y sala ponen el ambiente en contexto; los datos prácticos se encuentran sin navegar mucho; y las condiciones de reserva responden dudas reales.
+
+AFILAO ya tiene esos elementos repartidos entre portada, «Nosotros», galería, carta y contraportada. Se mantiene «Una gilda. Y otra ronda.» porque une el tono cotidiano del texto de marca con el tapeo y da personalidad a la galería; se aclara su propósito con una frase que anticipa barra y platos y una invitación visible a deslizar. El carrusel no avanza solo: cada visitante controla el recorrido y conserva flechas, contador y gesto táctil. Se evita añadir preguntas frecuentes o información promocional de los otros bares, porque las condiciones y datos propios de AFILAO aún deben confirmarse.

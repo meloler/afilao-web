@@ -180,3 +180,24 @@
 @media (prefers-reduced-motion: reduce) {
   .entry-mark { animation: none; }
 }
+
+/* Scroll cues follow the cover exit without adding work to the render cycle. */
+.entry-brand { opacity: var(--cover-opacity, 1); filter: blur(var(--cover-blur, 0px)); transform: translate3d(0, var(--cover-shift, 0px), 0) scale(var(--cover-scale, 1)); will-change: opacity, filter, transform; }
+.entry-social { justify-self: center; align-self: end; margin: 0; font-size: 22px; }
+.entry-details { margin-top: 14px; gap: 2px; }
+.entry-hours { gap: 2px; font-size: 17px; }
+.entry-closed { margin: 1px 0 2px; font-family: var(--condensed); font-size: 15px; }
+.entry-address { gap: 7px; min-height: 40px; font-family: var(--condensed); font-size: 16px; line-height: 1.15; }
+.entry-address:hover { text-decoration: underline; text-underline-offset: 3px; }
+.mobile-dock { animation: dock-arrive 220ms ease-out both; }
+@keyframes dock-arrive { from { opacity: 0; translate: 0 -8px; } to { opacity: 1; translate: 0 0; } }
+@media (max-width: 767px) {
+  .entry-details { margin-top: 10px; }
+  .entry-hours { font-size: 16px; }
+  .entry-address { font-size: 14px; }
+  .entry-social { font-size: 21px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .entry-brand { opacity: 1; filter: none; transform: none; }
+  .mobile-dock { animation: none; }
+}
