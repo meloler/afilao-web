@@ -54,3 +54,15 @@
 @media (prefers-reduced-motion: reduce) {
   :root { scroll-behavior: auto; }
 }
+
+/* Five groups fit in one touch-scrollable row without covering the menu. */
+.menu-shortcuts { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: thin; gap: 8px; }
+.menu-shortcuts a { flex: 0 0 auto; white-space: nowrap; }
+.menu-group dl > div { grid-template-columns: minmax(0, 1fr) 5ch; }
+.menu-group dd { text-align: right; font-variant-numeric: tabular-nums; }
+.menu-group { scroll-margin-top: 10px; }
+@media (max-width: 767px) {
+  .menu-shortcuts { display: flex; margin-inline: -20px; padding-inline: 20px; }
+  .menu-shortcuts a { padding-inline: 14px; }
+  .menu-group { scroll-margin-top: 82px; }
+}

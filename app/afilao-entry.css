@@ -81,3 +81,44 @@
 @media (prefers-reduced-motion: reduce) {
   .entry-action { transition: none; }
 }
+
+/* A short native sticky pause; no wheel/touch interception or scroll loop. */
+.entry-stage { padding-bottom: 24svh; background: var(--red); }
+.entry { position: sticky; top: 0; isolation: isolate; min-height: calc(100svh - 29px); padding: 24px 24px 18px; }
+.entry::before { content: ''; position: absolute; inset: 0; z-index: -1; background: url('/assets/texture-paper.webp') center / 720px auto; mix-blend-mode: multiply; opacity: .65; pointer-events: none; }
+.entry-center { padding-block: clamp(24px, 5svh, 52px); }
+.entry-actions { margin-top: clamp(24px, 4svh, 42px); }
+.entry-details { display: grid; justify-items: center; gap: 4px; }
+.entry-hours { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px 36px; margin: 0; font-family: var(--condensed); font-size: 20px; line-height: 1.25; }
+.entry-hours div { display: flex; gap: 10px; }
+.entry-hours dd { margin: 0; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.entry-closed { font-size: 12px; margin: 3px 0 6px; }
+.entry-social, .entry-address, .entry-discover { display: inline-flex; align-items: center; justify-content: center; gap: 9px; min-height: 44px; text-decoration: none; }
+.entry-social { font-family: var(--condensed); font-size: 24px; }
+.entry-address { font-size: 13px; line-height: 1.45; }
+.entry-address svg { flex-shrink: 0; }
+.entry-social:hover, .entry-address:hover { text-decoration: underline; }
+.entry a:focus-visible { outline-color: var(--paper); }
+.entry-discover { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; margin-top: 4px; }
+.booking-loading { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); z-index: 40; background: var(--paper); color: var(--red); padding: 14px 24px; border: 1px solid var(--red); }
+@media (max-width: 767px) {
+  .entry-stage { padding-bottom: 20svh; }
+  .entry { padding: 22px 20px 12px; }
+  .entry-center { padding-block: 26px; }
+  .entry-actions { margin-top: 28px; gap: 10px; }
+  .entry-action { min-height: 56px; padding: 13px 18px; font-size: 27px; }
+  .entry-hours { font-size: 18px; gap: 5px 24px; }
+  .entry-address { font-size: 12px; }
+}
+@media (max-height: 700px) and (max-width: 767px) {
+  .entry { padding-top: 16px; }
+  .entry-tagline { font-size: 16px; }
+  .entry-center { padding-block: 18px; }
+  .entry-brand { max-width: 310px; margin-inline: auto; }
+  .entry-actions { margin-top: 20px; }
+}
+/* Short landscape screens and motion-sensitive users keep a normal page flow. */
+@media (max-height: 550px), (prefers-reduced-motion: reduce) {
+  .entry-stage { padding-bottom: 0; }
+  .entry { position: relative; }
+}
